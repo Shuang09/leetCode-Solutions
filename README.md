@@ -1,8 +1,6 @@
-##### H5
-###### H6
-#LeetCodePy
-##LeetCode solutions in Python3
-##*Problems Classification*
+# LeetCodePy
+## LeetCode solutions in Python3
+## *Problems Classification*
 1.Array
 2.String
 3.Linked List
