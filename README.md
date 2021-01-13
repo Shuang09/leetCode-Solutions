@@ -1,6 +1,6 @@
-## LeetCodePy
+#LeetCodePy
 ##LeetCode solutions in Python3
-#Problems Classification
+##*Problems Classification*
 1.Array
 2.String
 3.Linked List
