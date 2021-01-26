@@ -1,5 +1,5 @@
 # LeetCodePy
-LeetCode solutions in Python3
+LeetCode solutions in Python3 and Java. I classified LeetCode problems and kept a record during problems solving.
 ## *Problems Classification*
 1. Array
 2. String
@@ -22,3 +22,6 @@ LeetCode solutions in Python3
 18. Combination
 19. DFA
 20. Decide and Conquer
+## *Problems Need to Solved*
+1437 > Bit Manipulation
+1329 > Diagonally
