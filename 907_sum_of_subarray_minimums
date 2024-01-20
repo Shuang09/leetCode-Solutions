@@ -1,0 +1,47 @@
+class Solution:
+    def sumSubarrayMins(self, arr: List[int]) -> int:
+        """
+        TimeComplexity = O(n)
+        SpaceComplecity = O(n)
+        
+        11, 81, 94, 43, 2
+        
+        i = 0, arr[i] = 11, stack: 0
+        i = 1, arr[i] = 81, stack: 0, 1
+        i = 2, arr[i] = 94, stack: 0, 1, 2
+        i = 3, arr[i] = 43, stack: 0, 3
+        i = 4, arr[i] = 2, stack: 4
+
+        while(!stack.empty() and arr[i] <= stack.back()):
+            stack.pop_back()
+
+        j = s[-1]
+        
+        if len(s) > 0:
+          dp[i] = dp[j] + arr[i] * (i-j)
+        else:
+          dp[i] = arr[i]*(i+1)
+        """
+
+        n = len(arr)
+        mod = 10**9 + 7
+        # dp[i] = sum of subarray minimum ending at i
+        dp =[0]*n
+        # monotonic increasing stack
+        s = []
+        ans = 0
+
+        for i in range(n):
+            while len(s) > 0 and arr[i] <= arr[s[-1]]:
+                s.pop()
+            if len(s) > 0:
+                j = s[-1]
+
+                dp[i]=dp[j]+arr[i]*(i-j)
+            else:
+                dp[i] = arr[i] *(i+1)
+            s.append(i)
+            print(dp[i])
+            ans = (ans + dp[i]) % mod
+        return ans
+    
