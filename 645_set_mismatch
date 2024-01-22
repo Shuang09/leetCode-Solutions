@@ -1,0 +1,42 @@
+class Solution(object):
+    # TimeComplexity: O(N)
+    # SpaceComplexity: O(N)
+    def findErrorNums1(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n = len(nums)
+        map = {i: 1 for i in range(1, n+1)}
+        misssing, duplicate = 0, 0
+
+        print(map)
+        for num in nums:
+            map[num] -= 1
+        
+        print(map)
+
+        for i, num in map.items():
+            if num < 0:
+                duplicate = i
+            if num == 1:
+                missing = i
+        
+        print(missing, duplicate)
+        return[duplicate, missing]
+
+
+  # TimeComplexity: O(N)
+  # SpaceComplexity: O(N)
+  def findErrorNums(self, nums):
+          """
+          1 2 2 4
+          set: 1 2 4
+          currSum = 9
+          expectedSum = 10 - n * (n+1) // 2
+          currSetSum = 7 - sum(set(nums))
+          duplicated: currSum - currSetSum
+          missing = expectedSum - currSetSum        
+          """
+          n = len(nums)
+          return [sum(nums) - sum(set(nums)), n * (n+1) // 2 - sum(set(nums))]
