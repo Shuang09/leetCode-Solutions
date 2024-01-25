@@ -1,0 +1,27 @@
+class Solution:
+    """
+     0 a b c d e
+     a 1 1 1 1 1
+     c 1 1 2 2 2
+     e 1 1 2 2 3
+    """
+    #Time Complexity: O(N*M)
+    #Space complexity: O(N*M)
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        LEN1 = len(text1)
+        LEN2 = len(text2)
+        # print(LEN1, LEN2)
+        dp = [[0] * (LEN2 + 1) for i in range(LEN1 + 1)]
+        # print(dp)
+
+        for row in range(1, LEN1+ 1):
+            for col in range(1, LEN2+1):
+                # print(row, col, row-1, col-1)
+                if text1[row-1] == text2[col-1]:
+                    dp[row][col] =  dp[row-1][col-1] + 1
+                else:
+                    dp[row][col] = max(dp[row-1][col], dp[row][col-1])
+        
+        # print(dp)
+        return dp[-1][-1]
+
