@@ -1,0 +1,27 @@
+class Solution:
+    def numSubmatrixSumTarget(self, matrix: List[List[int]], target: int) -> int:
+        ROWS, COLS = len(matrix), len(matrix[0])
+
+        sub_sum = [[0] * COLS for _ in range(ROWS)]
+
+        for row in range(ROWS):
+            for col in range(COLS):
+                top = sub_sum[row-1][col] if row > 0 else 0
+                left = sub_sum[row][col - 1] if col > 0 else 0
+                top_left = sub_sum[row-1][col-1] if min(row, col)> 0 else 0
+                sub_sum[row][col] = matrix[row][col] + top + left - top_left
+        
+        res = 0
+        for r1 in range(ROWS):
+            for r2 in range(r1, ROWS):
+                count = defaultdict(int)
+                count[0] = 1
+                for c in range(COLS):
+                    curr_sum = sub_sum[r2][c] - (
+                        sub_sum[r1-1][c] if r1 > 0 else 0
+                    )
+                    diff = curr_sum - target
+                    res += count[diff]
+                    count[curr_sum] += 1
+        return res
+        
