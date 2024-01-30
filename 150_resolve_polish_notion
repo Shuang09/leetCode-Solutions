@@ -1,0 +1,30 @@
+class Solution:
+
+    #Time Complexity: O(N)
+    #Space Complexity: O(N)
+
+    def evalRPN(self, tokens: List[str]) -> int:
+
+        def calculate( a, b, operator):
+            if operator == '+':
+                return a+b
+            elif operator == '-':
+                return a-b
+            elif operator == '*':
+                return a*b
+            elif operator == '/':
+                return int(a/b)
+        
+        operators = '+-*/'
+        stack = []
+        for token in tokens:
+            if token in operators:
+                num1 = stack.pop()
+                num2 = stack.pop()
+                newNum = calculate(num2, num1, token)
+                stack.append(newNum)
+            else:
+                stack.append(int(token))
+
+        return stack.pop()
+        
