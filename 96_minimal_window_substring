@@ -1,0 +1,45 @@
+class Solution:
+    #Time complexity: O(s+t)
+    #Space complexity: O(s+t)
+    def minWindow(self, s: str, t: str) -> str:
+        positions, countT = {}, {}
+        twoPoints = (0, float('inf'))
+        resLen = float('inf')
+
+        if s == t:
+            return s
+        
+        for char in t:
+            countT[char] = 1 + countT.get(char, 0)
+        
+        have, need = 0, len(countT)
+
+        start = 0
+        for idx, char in enumerate(s):
+
+            positions[char] = 1 + positions.get(char, 0)
+
+            if char in countT and positions[char] == countT[char]:
+                have += 1
+
+            # print(have, need)
+
+            while have == need:
+                if (idx - start + 1) < resLen:
+                    twoPoints = (start, idx)
+                    resLen = idx - start + 1
+
+                positions[s[start]] -= 1
+
+                if s[start] in countT and positions[s[start]] < countT[s[start]]:
+                    have -= 1
+                    
+                start += 1
+
+
+        l, r = twoPoints
+        print(twoPoints)
+        return s[l:r+1] if resLen != float('inf') else ''
+
+
+        
