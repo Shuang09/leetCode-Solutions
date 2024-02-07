@@ -1,0 +1,29 @@
+class Solution:
+    #Time complecity: O(n + 75 + sorting(?)) = O(n)
+    #Space complexity: O(75)
+    def frequencySort(self, s: str) -> str:
+        # a = ord('a')
+        # b = ord('0')
+        # c = ord('z')
+        # d = ord('Z')
+        frequency = [0] * 75
+
+        for char in s:
+            frequency[ord(char) - 48] += 1
+        freq_c = []
+
+        for i in range(75):
+            if frequency[i] == 0: continue
+            freq_c.append([frequency[i], chr(48+i)])
+
+        freq_c.sort(reverse=True)
+        ans = ''
+        for freq, char in freq_c:
+            ans+=char*freq
+        return ans
+
+  
+
+
+        print( a, b, c, d)
+        
